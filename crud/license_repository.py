@@ -23,6 +23,17 @@ def create_license_repository(
         copyright_owner=license_repo.copyright_owner,
         license_info=license_repo.license_info
     )
+
+    # PR 시 추가한 코드 (테스트)
+    db_license_repo = LicenseRepository(
+        id=license_id,
+        name=license_repo.name,
+        description=license_repo.description,
+        registrant_name=license_repo.registrant_name,
+        github_url=license_repo.github_url,
+        copyright_owner=license_repo.copyright_owner,
+        license_info=license_repo.license_info
+    )
     
     # 데이터베이스에 저장
     db.add(db_license_repo)     # 메모리에만 객체 추가 -> DB에는 저장되지 않음
