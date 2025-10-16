@@ -25,6 +25,10 @@ def create_license_repository(
     )
 
     # PR 시 추가한 코드 (테스트)
+    db.add(db_license_repo)     # 메모리에만 객체 추가 -> DB에는 저장되지 않음
+    db.commit()                 # 실제로 DB에 영구 저장
+    db.refresh(db_license_repo) # DB에서 최신 데이터를 다시 가져옴 -> 객체가 데이터베이스의 실제 상태와 동기화
+                                # refresh 하지 않으면 created_at이 None으로 반환될 수 있음
     db_license_repo = LicenseRepository(
         id=license_id,
         name=license_repo.name,
